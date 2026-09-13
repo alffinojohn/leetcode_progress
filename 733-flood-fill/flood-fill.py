@@ -15,20 +15,12 @@ class Solution:
 
             image[r][c] = color
 
-            dfs(r+1,c)
+            dfs(r+1, c)
+            dfs(r-1, c)
             dfs(r,c+1)
-            dfs(r-1,c)
             dfs(r,c-1)
 
         dfs(sr, sc)
         return image
-
-
-            
-
-
-
-
-
 
         
