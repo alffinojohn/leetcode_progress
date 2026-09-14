@@ -7,6 +7,7 @@
 class Solution:
     def increasingBST(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         res = []
+
         def dfs(node):
 
             if not node:
@@ -20,12 +21,12 @@ class Solution:
 
         dummy = TreeNode(0)
         curr = dummy
-
-        for val in res:
-            curr.right = TreeNode(val)
+        for n in res:
+            curr.right = TreeNode(n)
             curr = curr.right
 
         return dummy.right
 
 
             
+        
