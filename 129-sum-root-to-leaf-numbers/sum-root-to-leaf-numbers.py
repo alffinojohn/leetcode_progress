@@ -18,6 +18,8 @@ class Solution:
 
             return dfs(node.left, num) + dfs(node.right, num)
 
-        return dfs(root, "")
+    
+        return dfs(root, '')
+
             
         
