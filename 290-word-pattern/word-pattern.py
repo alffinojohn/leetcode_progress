@@ -1,7 +1,9 @@
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
 
-        matching = {}
+        matching_letter = {}
+        matching_words = {}
+
 
         words = s.split()
 
@@ -9,16 +11,16 @@ class Solution:
             return False
 
         for i in range(len(words)):
-            if pattern[i] in matching:
-                if matching[pattern[i]] != words[i]:
+            if pattern[i] in matching_letter:
+                if matching_letter[pattern[i]] != words[i]:
                     return False
-                else:
-                    continue
 
-            if words[i] in matching.values():
-                return False
+            if words[i] in matching_words:
+                if matching_words[words[i]] != pattern[i]:
+                    return False
 
-            matching[pattern[i]] = words[i]
+            matching_letter[pattern[i]] = words[i]
+            matching_words[words[i]] = pattern[i]
 
         return True
 
