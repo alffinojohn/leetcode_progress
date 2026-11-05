@@ -15,19 +15,17 @@ class Solution:
 
         directions = [(1,0), (0,1), (-1,0), (0,-1)]
         while zeros:
-            length = len(zeros)
-            for _ in range(length):
-                row,col = zeros.popleft()
-                for r,c in directions:
-                    nr = row+r
-                    nc = col+c
+            row,col = zeros.popleft()
+            for r,c in directions:
+                nr = row+r
+                nc = col+c
 
-                    if nr >= rows or nr < 0 or nc >= cols or nc < 0 :
-                        continue
+                if nr >= rows or nr < 0 or nc >= cols or nc < 0 :
+                    continue
 
-                    if dist[nr][nc] == -1:
-                        dist[nr][nc] = dist[row][col] + 1
-                        zeros.append((nr,nc))
+                if dist[nr][nc] == -1:
+                    dist[nr][nc] = dist[row][col] + 1
+                    zeros.append((nr,nc))
 
 
         return dist
