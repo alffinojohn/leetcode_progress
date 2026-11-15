@@ -4,54 +4,44 @@ class Solution:
         rows = len(grid)
         cols = len(grid[0])
         fresh = 0
-        q = deque()
-        mins = 0
+        rotten = deque()
 
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 1:
                     fresh += 1
                 if grid[r][c] == 2:
-                    q.append((r,c))
+                    rotten.append((r,c))
 
+        mins = 0
         directions = [(1,0), (-1,0), (0,1), (0,-1)]
-        while q and fresh > 0:
-            length = len(q)
-            for i in range(length):
-                row,col = q.popleft()
-                for r, c in directions:
+        while rotten and fresh > 0:
+            size = len(rotten)
+            for i in range(size):
+                row,col = rotten.popleft()
+                for r,c in directions:
                     nr = row + r
                     nc = col + c
 
-                    if nr < 0 or nc < 0 or nr >= rows or nc >= cols:
+                    if nr < 0 or nr >= rows or nc < 0 or nc >= cols:
                         continue
 
                     if grid[nr][nc] == 1:
+                        rotten.append((nr,nc))
                         grid[nr][nc] = 2
                         fresh -= 1
-                        q.append((nr,nc))
 
             mins += 1
 
-                
-        if fresh > 0:
+        if fresh:
             return -1
-
-        else:
-            return mins
-
-
-
-
-                
+        
+        return mins
 
 
 
 
 
-            
-
-            
 
 
         
