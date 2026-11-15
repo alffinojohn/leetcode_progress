@@ -1,26 +1,19 @@
 class Solution:
     def dailyTemperatures(self, temperatures: List[int]) -> List[int]:
-        stk = []
-        output = [0] * len(temperatures)
-        
+        wait = [0] * len(temperatures)
+        leftover = []
+
         for i in range(len(temperatures)):
+            while leftover and temperatures[leftover[-1]] < temperatures[i]:
+                wait[leftover[-1]] = i - leftover[-1]
+                leftover.pop()
 
-            while stk and temperatures[i] > temperatures[stk[-1]]:
-                index = stk.pop()
-                output[index] = i - index
-                
-            stk.append(i)
+            leftover.append(i)
 
-        return output
+        return wait
 
+            
 
-
-
-
-
-
-
-
-
+            
 
 
